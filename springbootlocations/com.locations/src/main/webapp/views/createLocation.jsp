@@ -25,5 +25,7 @@ Type: Rural <input type="radio" name="type" value="RURAL"/></div>
 </form>
 ${message}
 
+<a href="displayLocations"> View All Locations</a>
+
 </body>
 </html>

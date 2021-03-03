@@ -7,16 +7,16 @@ import org.springframework.stereotype.Service;
 
 import com.locations.entities.Locations;
 import com.locations.repo.LocationRepository;
+
 @Service
 public class LocationSericeImpl implements LocationService {
 
 	@Autowired
 	private LocationRepository repo;
-	
-	
+
 	@Override
 	public Locations saveLocation(Locations location) {
-		return repo.save(location) ;
+		return repo.save(location);
 	}
 
 	@Override
@@ -36,7 +36,7 @@ public class LocationSericeImpl implements LocationService {
 	}
 
 	@Override
-	public List<Locations> getAllLocation() {
+	public List<Locations> getAllLocations() {
 		return repo.findAll();
 	}
 
