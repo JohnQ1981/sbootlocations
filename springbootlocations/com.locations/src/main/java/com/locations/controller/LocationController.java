@@ -1,5 +1,6 @@
 package com.locations.controller;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,13 +12,16 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.locations.entities.Locations;
 import com.locations.service.LocationService;
+import com.locations.util.EmailUtil;
 
 @Controller
 public class LocationController {
-
+	
 	@Autowired
 	LocationService service;
-
+	@Autowired
+	EmailUtil emailUtil;
+	
 	@RequestMapping("/create")
 	public String create() {
 		return "createLocation";
@@ -28,6 +32,7 @@ public class LocationController {
 		Locations locationSaved = service.saveLocation(location);
 		String msg = "Location saved with id: " + locationSaved.getId();
 		modelMap.addAttribute("message", msg);
+		emailUtil.sendEmail("johnqatwork21@gmail.com", "Location Saved", "Location Saved Successfully" );
 		return "createLocation";
 
 	}
@@ -36,6 +41,7 @@ public class LocationController {
 	public String displayLocations(ModelMap modelMap) {
 		List<Locations> locations = service.getAllLocations();
 		modelMap.addAttribute("locations", locations);
+		emailUtil.sendEmail("johnqatwork21@gmail.com", "This is from Display Page", "Trying To send email" );
 		return "displayLocations";
 	}
 	
@@ -47,6 +53,7 @@ public class LocationController {
 		service.deleteLocation(locationById);
 		List<Locations> allLocations = service.getAllLocations();
 		modelMap.addAttribute("locations", allLocations);
+		emailUtil.sendEmail("johnqatwork21@gmail.com", "Location Deleted", "Location Deleted" );
 		return "displayLocations";
 	}
 	
@@ -60,6 +67,7 @@ public class LocationController {
 	public String showUpdate(@RequestParam("id") int id,ModelMap modelMap) {
 		Locations updateLocationById = service.getLocationById(id);
 		modelMap.addAttribute("locations",updateLocationById);
+		
 		return "editLocation";
 				
 	}
@@ -70,6 +78,17 @@ public class LocationController {
 		
 		List<Locations> allLocations = service.getAllLocations();
 		modelMap.addAttribute("locations",allLocations);
+		emailUtil.sendEmail("johnqatwork21@gmail.com", "Location Updated", "Location Updated in DB" );
 		return "displayLocations";
 	}
+	
+	@RequestMapping("/sendEmail")
+	public String displayLocations1(ModelMap modelMap) {
+		List<Locations> locations = service.getAllLocations();
+		modelMap.addAttribute("locations", locations);
+		emailUtil.sendEmail("johnqatwork21@gmail.com", "This is from Display Page", "Trying To send email" );
+		return "sendEmail";
+	}
+		
+	
 }

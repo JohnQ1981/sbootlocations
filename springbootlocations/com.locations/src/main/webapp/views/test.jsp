@@ -10,5 +10,6 @@
 </tr>
 </c:forEach>
 </table><h2>Hellos This is Test Page</h2>
+<a href="/web/displayLocations"> Go Back to Display Locations</a>
 </body>
 </html> 

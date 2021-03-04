@@ -22,9 +22,9 @@ Type: Urban <input type="radio" name="type" value="URBAN" ${location.type=='URBA
 Type: Rural <input type="radio" name="type" value="RURAL" ${location.type=='RURAL'?'checked':''}/></div>
 
 <input type="submit" value="save"/>
-</pre>
-</form>
 
+</form>
+</pre>
 
 </body>
 </html>
